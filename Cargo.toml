@@ -1,0 +1,27 @@
+[package]
+name = "lockness-challenge"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "ElGamal-like XOR stream cipher over generic-ec, for the LFDT Lockness mentorship"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+generic-ec = { version = "0.5", features = [
+    "curve-ed25519",
+    "curve-secp256k1",
+    "curve-secp384r1",
+] }
+sha2 = "0.10"
+thiserror = "2"
+rand_core = "0.6"
+zeroize = { version = "1", features = ["derive"] }
+
+[dev-dependencies]
+rand = "0.8"
+hex = "0.4"
+
+[lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
