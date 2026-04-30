@@ -1,10 +1,18 @@
-Here is the demo video provided for testing demo of this challenge:
+# lockness challenge submission
 
-# Working formula:
+here is my implementation of the cryptosystem.
 
-[Google drive of PDF of coding challenge]: https://drive.google.com/file/d/1JeBaZkQf2ZpKciUbwQqd4Bz9clNS1Mdp/view?usp=sharing
+formula/challenge pdf: https://drive.google.com/file/d/1JeBaZkQf2ZpKciUbwQqd4Bz9clNS1Mdp/view?usp=sharing
 
-## Usage
+### how to test
+
+```text
+cargo test
+cargo clippy
+cargo run --example demo
+```
+
+### quick usage
 
 ```rust,ignore
 use generic_ec::curves::Secp256k1;
@@ -16,15 +24,7 @@ let sk = SecretScalar::<Secp256k1>::random(&mut OsRng);
 let pk = Point::generator() * &sk;
 
 let ct = encrypt(&pk, b"hello", &mut OsRng).unwrap();
-assert_eq!(decrypt(&sk, &ct).unwrap(), b"hello");
-```
+let msg = decrypt(&sk, &ct).unwrap();
 
-# How to build and use
-
-```text
-cargo test          
-cargo clippy        
-cargo fmt -- --check
+assert_eq!(msg, b"hello");
 ```
-[lockness]: https://github.com/LFDT-Lockness
-[generic-ec]: https://docs.rs/generic-ec/0.5.0/generic_ec/
